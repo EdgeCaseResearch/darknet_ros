@@ -232,6 +232,14 @@ install(
   FILES_MATCHING PATTERN "*.h"
 )
 
+install(
+  DIRECTORY
+  launch
+  config
+  yolo_network_config
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
 # Download tiny-yolo-voc.weights
 set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
 set(FILE "${PATH}/tiny-yolo-voc.weights")
