@@ -16,7 +16,7 @@ The included Dockerfile will create a container that runs a ROS interface for da
 	
 Make sure you adjust the value of `NVIDIA_COMPUTE` in the Dockerfile.
 	
-By default the container will automatically start `roslaunch darknet_ros darknet_ros`. 
+By default the container will automatically start `roslaunch darknet_ros darknet_ros.launch`. This launches the classifier which listens on the topics specified in `darknet_ros/config/tut_yolo.yaml`. By default, the actionlib server listens on `/sut/check_for_objects`.
 
 # Original readme below:
 
