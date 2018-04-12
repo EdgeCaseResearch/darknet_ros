@@ -30,10 +30,10 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <cv_bridge/cv_bridge.h>
 
-// darknet_ros_msgs
-#include <darknet_ros_msgs/BoundingBoxes.h>
-#include <darknet_ros_msgs/BoundingBox.h>
-#include <darknet_ros_msgs/CheckForObjectsAction.h>
+// tut_common_msgs
+#include <tut_common_msgs/BoundingBoxes.h>
+#include <tut_common_msgs/BoundingBox.h>
+#include <tut_common_msgs/CheckForObjectsAction.h>
 
 namespace darknet_ros {
 
@@ -142,7 +142,7 @@ class YoloObjectDetector
   bool publishDetectionImage(const cv::Mat& detectionImage);
 
   //! Typedefs.
-  typedef actionlib::SimpleActionServer<darknet_ros_msgs::CheckForObjectsAction> CheckForObjectsActionServer;
+  typedef actionlib::SimpleActionServer<tut_common_msgs::CheckForObjectsAction> CheckForObjectsActionServer;
   typedef std::shared_ptr<CheckForObjectsActionServer> CheckForObjectsActionServerPtr;
 
   //! ROS node handle.
@@ -167,7 +167,7 @@ class YoloObjectDetector
   std::vector< std::vector<RosBox_> > rosBoxes_;
   std::vector<int> rosBoxCounter_;
   std::vector<cv::Scalar> rosBoxColors_;
-  darknet_ros_msgs::BoundingBoxes boundingBoxesResults_;
+  tut_common_msgs::BoundingBoxes boundingBoxesResults_;
   RosBox_* boxes_;
 
   //! Camera related parameters.

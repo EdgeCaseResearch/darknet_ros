@@ -50,6 +50,7 @@ find_package(catkin REQUIRED
     rospy
     std_msgs
     actionlib
+	tut_common_msgs
     darknet_ros_msgs
     image_transport
 )
@@ -69,6 +70,7 @@ catkin_package(
     actionlib
     rospy
     std_msgs
+	tut_common_msgs
     darknet_ros_msgs
     image_transport
   DEPENDS
@@ -213,6 +215,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 add_dependencies(${PROJECT_NAME}_lib
+  tut_common_msgs_generate_messages_cpp
   darknet_ros_msgs_generate_messages_cpp
 )
 

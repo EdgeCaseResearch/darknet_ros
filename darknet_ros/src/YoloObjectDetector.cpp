@@ -166,7 +166,7 @@ void YoloObjectDetector::init() {
 
   imageSubscriber_ = imageTransport_.subscribe(cameraTopicName, cameraQueueSize, &YoloObjectDetector::cameraCallback,this);
   objectPublisher_ = nodeHandle_.advertise<std_msgs::Int8>(objectDetectorTopicName, objectDetectorQueueSize, objectDetectorLatch);
-  boundingBoxesPublisher_ = nodeHandle_.advertise<darknet_ros_msgs::BoundingBoxes>(boundingBoxesTopicName, boundingBoxesQueueSize, boundingBoxesLatch);
+  boundingBoxesPublisher_ = nodeHandle_.advertise<tut_common_msgs::BoundingBoxes>(boundingBoxesTopicName, boundingBoxesQueueSize, boundingBoxesLatch);
   detectionImagePublisher_ = nodeHandle_.advertise<sensor_msgs::Image>(detectionImageTopicName, detectionImageQueueSize, detectionImageLatch);
 
   // Action servers.
@@ -198,7 +198,7 @@ YoloObjectDetector::~YoloObjectDetector() {
 
 void YoloObjectDetector::drawBoxes(cv::Mat &inputFrame, std::vector<RosBox_> &rosBoxes, int &numberOfObjects,
    cv::Scalar &rosBoxColor, const std::string &objectLabel) {
-  darknet_ros_msgs::BoundingBox boundingBox;
+  tut_common_msgs::BoundingBox boundingBox;
 
   for (int i = 0; i < numberOfObjects; i++) {
     int xmin = (rosBoxes[i].x - rosBoxes[i].w/2)*frameWidth_;
@@ -275,7 +275,7 @@ void YoloObjectDetector::runYolo(cv::Mat &fullFrame, const std_msgs::Header& hea
   }
   if (isCheckingForObjects()) {
     ROS_DEBUG("[YoloObjectDetector] check for objects in image.");
-    darknet_ros_msgs::CheckForObjectsResult objectsActionResult;
+    tut_common_msgs::CheckForObjectsResult objectsActionResult;
     objectsActionResult.id = id;
     objectsActionResult.boundingBoxes = boundingBoxesResults_;
 
@@ -335,7 +335,7 @@ void YoloObjectDetector::checkForObjectsActionGoalCB() {
     ROS_INFO("[YoloObjectDetector] Start check for objects action.");
   }
 
-  boost::shared_ptr<const darknet_ros_msgs::CheckForObjectsGoal> imageActionPtr = checkForObjectsActionServer_->acceptNewGoal();
+  boost::shared_ptr<const tut_common_msgs::CheckForObjectsGoal> imageActionPtr = checkForObjectsActionServer_->acceptNewGoal();
   sensor_msgs::Image imageAction = imageActionPtr->image;
 
   cv_bridge::CvImagePtr cam_image;
