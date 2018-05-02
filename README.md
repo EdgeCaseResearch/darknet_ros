@@ -3,7 +3,7 @@
 ## Requirements
 
 * Docker
-* [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) and all [prerequisites](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#prerequisites)
+* [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) and all [prerequisites](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#prerequisites) if you are running with the GPU
 
 
 ## Running the dockerfile
@@ -11,10 +11,14 @@
 The included Dockerfile will create a container that runs a ROS interface for darknet/Yolo using the following commands:
 
     cd <darknet_ros home>
-	docker build -t darknet_ros .
-	docker run --runtime=nvidia -it --net=host darknet_ros:latest
-	
-Make sure you adjust the value of `NVIDIA_COMPUTE` in the Dockerfile.
+    # Build the CPU-only docker image
+    bash build_image.sh cpu
+
+    # Or build the GPU docker image (The final arg must be the compute number for your Nvidia card. See the build_image.sh usage for examples)
+    bash build_image.sh gpu compute_61
+
+    # Change the docker image tag to suit the image you want to run 
+	docker run --runtime=nvidia -it --net=host darknet_ros:<gpu|cpu>
 	
 By default the container will automatically start `roslaunch darknet_ros darknet_ros.launch`. This launches the classifier which listens on the topics specified in `darknet_ros/config/tut_yolo.yaml`. By default, the actionlib server listens on `/sut/check_for_objects`.
 
