@@ -3,9 +3,6 @@ ARG BASE_IMAGE_TAG=kinetic
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG}
 
-ARG BASE_IMAGE=ros
-ARG BASE_IMAGE_TAG=kinetic
-
 # ---------------------------------------------
 
 RUN echo "source /opt/ros/kinetic/setup.sh" >> ~/.bashrc
