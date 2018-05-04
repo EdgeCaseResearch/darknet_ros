@@ -249,7 +249,7 @@ set(FILE "${PATH}/tiny-yolo-voc.weights")
 message(STATUS "Checking and downloading tiny-yolo-voc.weights if needed ...")
 if (NOT EXISTS "${FILE}")
   message(STATUS "... file does not exist. Downloading now ...")
-  execute_process(COMMAND wget http://pjreddie.com/media/files/tiny-yolo-voc.weights -P ${PATH})
+  execute_process(COMMAND wget --quiet http://pjreddie.com/media/files/tiny-yolo-voc.weights -P ${PATH})
 endif()
 
 set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
@@ -257,7 +257,7 @@ set(FILE "${PATH}/yolo.weights")
 message(STATUS "Checking and downloading yolo.weights if needed ...")
 if (NOT EXISTS "${FILE}")
   message(STATUS "... file does not exist. Downloading now ...")
-  execute_process(COMMAND wget http://pjreddie.com/media/files/yolo.weights -P ${PATH})
+  execute_process(COMMAND wget --quiet http://pjreddie.com/media/files/yolo.weights -P ${PATH})
 endif()
 
 
