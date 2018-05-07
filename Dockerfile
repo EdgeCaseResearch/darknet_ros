@@ -14,14 +14,15 @@ RUN apt-get -q update && apt-get -qq install \
     libx11-dev  \
     ros-kinetic-ros-base \
     ros-kinetic-image-transport \
-    ros-kinetic-cv-bridge
+    ros-kinetic-cv-bridge \
+    git
 
 
 WORKDIR /workspace/darknet_ros
 COPY darknet src/darknet
 COPY darknet_ros src/darknet_ros
 COPY darknet_ros_msgs src/darknet_ros_msgs
-COPY tut_common_msgs src/tut_common_msgs
+RUN git clone https://github.com/EdgeCaseResearch/tut_common_msgs.git /workspace/darknet_ros/src/tut_common_msgs
 
 RUN /bin/bash -c "source /opt/ros/kinetic/setup.bash && catkin_make install -DCMAKE_BUILD_TYPE=Release"
 RUN echo "source $(pwd)/install/setup.sh" >> ~/.bashrc
