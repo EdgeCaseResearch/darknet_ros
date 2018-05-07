@@ -243,22 +243,26 @@ install(
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-# Download tiny-yolo-voc.weights
-set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
-set(FILE "${PATH}/tiny-yolo-voc.weights")
-message(STATUS "Checking and downloading tiny-yolo-voc.weights if needed ...")
-if (NOT EXISTS "${FILE}")
-  message(STATUS "... file does not exist. Downloading now ...")
-  execute_process(COMMAND wget http://pjreddie.com/media/files/tiny-yolo-voc.weights -P ${PATH})
-endif()
 
-set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
-set(FILE "${PATH}/yolo.weights")
-message(STATUS "Checking and downloading yolo.weights if needed ...")
-if (NOT EXISTS "${FILE}")
-  message(STATUS "... file does not exist. Downloading now ...")
-  execute_process(COMMAND wget http://pjreddie.com/media/files/yolo.weights -P ${PATH})
-endif()
+message(STATUS "Getting weights...")
+execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/../get_weights.sh)
+
+# # Download tiny-yolo-voc.weights
+# set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
+# set(FILE "${PATH}/tiny-yolo-voc.weights")
+# message(STATUS "Checking and downloading tiny-yolo-voc.weights if needed ...")
+# if (NOT EXISTS "${FILE}")
+#   message(STATUS "... file does not exist. Downloading now ...")
+#   execute_process(COMMAND wget --quiet http://pjreddie.com/media/files/tiny-yolo-voc.weights -P ${PATH})
+# endif()
+
+# set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
+# set(FILE "${PATH}/yolo.weights")
+# message(STATUS "Checking and downloading yolo.weights if needed ...")
+# if (NOT EXISTS "${FILE}")
+#   message(STATUS "... file does not exist. Downloading now ...")
+#   execute_process(COMMAND wget --quiet http://pjreddie.com/media/files/yolo.weights -P ${PATH})
+# endif()
 
 
 #############
@@ -266,14 +270,14 @@ endif()
 #############
 
 if(CATKIN_ENABLE_TESTING)
-  # Download yolo-voc.weights
-  set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
-  set(FILE "${PATH}/yolo-voc.weights")
-  message(STATUS "Checking and downloading yolo-voc.weights if needed ...")
-  if (NOT EXISTS "${FILE}")
-    message(STATUS "... file does not exist. Downloading now ...")
-    execute_process(COMMAND wget http://pjreddie.com/media/files/yolo-voc.weights -P ${PATH})
-  endif()
+  # # Download yolo-voc.weights
+  # set(PATH "${CMAKE_CURRENT_SOURCE_DIR}/yolo_network_config/weights")
+  # set(FILE "${PATH}/yolo-voc.weights")
+  # message(STATUS "Checking and downloading yolo-voc.weights if needed ...")
+  # if (NOT EXISTS "${FILE}")
+  #   message(STATUS "... file does not exist. Downloading now ...")
+  #   execute_process(COMMAND wget http://pjreddie.com/media/files/yolo-voc.weights -P ${PATH})
+  # endif()
 
   find_package(rostest REQUIRED)
 
