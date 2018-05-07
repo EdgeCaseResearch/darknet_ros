@@ -26,3 +26,16 @@ if [ ! -f $"WEIGHT_FILE" ]; then
 else
     echo "Weight file $WEIGHT_FILE already exists"
 fi
+
+
+echo "------------------"
+
+# For testing
+WEIGHT_NAME="yolo-voc.weights"
+WEIGHT_FILE="$WEIGHTS_PATH/$WEIGHT_NAME"
+if [ ! -f $"WEIGHT_FILE" ]; then
+    echo "Downloading $WEIGHT_NAME to $WEIGHTS_PATH"
+    wget "http://pjreddie.com/media/files/$WEIGHT_NAME" -P "$WEIGHTS_PATH"
+else
+    echo "Weight file $WEIGHT_FILE already exists"
+fi
