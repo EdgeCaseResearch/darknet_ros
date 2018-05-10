@@ -30,5 +30,5 @@ RUN echo "source $(pwd)/install/setup.sh" >> ~/.bashrc
 WORKDIR /workspace
 
 # Run the ros interface by default
-CMD /bin/bash -c "source /opt/ros/kinetic/setup.bash && source darknet_ros/install/setup.bash && roslaunch darknet_ros darknet_ros.launch"
+CMD /bin/bash -c "source /opt/ros/kinetic/setup.bash && source darknet_ros/install/setup.bash"
 
