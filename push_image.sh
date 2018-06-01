@@ -25,7 +25,7 @@ if [ -z "$TARGET" ]; then
     exit 1
 fi
 
-IMAGE_NAME="sut"
+IMAGE_NAME="quay.io/edgecase/sut"
 BASE_TAG="darknet-ros"
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -53,6 +53,7 @@ fi
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin quay.io
 
-docker push "quay.io/edgecase/${FULL_IMAGE_NAME}"
+echo "Pushing image: \"${FULL_IMAGE_NAME}\""
+docker push "${FULL_IMAGE_NAME}"
 
 echo "Pushed image: \"${FULL_IMAGE_NAME}\""
