@@ -29,6 +29,6 @@ script:
 
 deploy:
   provider: script
-  script: bash docker_push.sh ${TARGET} ${COMPUTE}
+  script: bash push_image.sh ${TARGET} ${COMPUTE}
   on:
     branch: master

@@ -25,7 +25,7 @@ if [ -z "$TARGET" ]; then
     exit 1
 fi
 
-IMAGE_NAME="sut"
+IMAGE_NAME="quay.io/edgecase/sut"
 BASE_TAG="darknet-ros"
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
