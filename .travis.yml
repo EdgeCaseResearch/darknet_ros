@@ -31,5 +31,4 @@ deploy:
   provider: script
   script: bash docker_push.sh ${TARGET} ${COMPUTE}
   on:
-    branch: feature/travis-quay
-    # branch: master
+    branch: master
