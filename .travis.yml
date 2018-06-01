@@ -1,0 +1,34 @@
+language: generic
+
+sudo: required
+
+cache:
+  directories:
+    - darknet_ros/yolo_network_config/weights
+
+services:
+  - docker
+
+env:
+  matrix:
+    - TARGET=cpu COMPUTE=-1
+    - TARGET=gpu COMPUTE=61
+    - TARGET=gpu COMPUTE=52
+    - TARGET=gpu COMPUTE=37
+
+before_install:
+  - echo "Branch is $TRAVIS_BRANCH"
+  - sudo apt-get -qq update
+  - sudo apt-get -q install -y python-pip wget
+  - sudo pip -q install awscli
+
+script:
+  # Stop if downloading SB fails
+  - set -e
+  - bash build_image.sh ${TARGET} ${COMPUTE}
+
+deploy:
+  provider: script
+  script: bash docker_push.sh ${TARGET} ${COMPUTE}
+  on:
+    branch: master
