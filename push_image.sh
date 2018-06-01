@@ -51,9 +51,9 @@ if [ "${TARGET}" == "cpu" ]; then
 
 fi
 
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin quay.io
-
 echo "Pushing image: \"${FULL_IMAGE_NAME}\""
+
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin quay.io
 docker push "${FULL_IMAGE_NAME}"
 
 echo "Pushed image: \"${FULL_IMAGE_NAME}\""

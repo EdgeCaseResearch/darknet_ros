@@ -10,6 +10,8 @@ services:
   - docker
 
 env:
+  global:
+    - secure: G1Ac0jLNR+7nJnIPBehqXEdykeKmEgX+2W/Bd2zj7xLvabHqe7I60OgFnTSExU99WifDX9EpfRxkVjtzDrqOkkesBOvu2fvUw3rXmIdfa6cS+dCKj9knSng0C7WFZX37LHjjbQ0enYpK3jnwU1+TAv6l2zJPOwhxQpbs5jXKw24EQHEp1ijWi4rrPxAn3Ay13/ShCqSJECaT7nO3pIaUbxm4gCnisFvaVo4lyWYLxMsc1wBcoh8jbBGSvEiV9kriHYCYoWANoqnV4mBCQTki54Lo9Jr4VjM9SdTjm32PFffCpZvnJu5D/GDDcP1JT8l+GLldRvv2LXvQnFHPl0gT2ttnQ4SwsJorPGKqrG7q3trZJyW/ZFW2dOmF6WboNlK8QlFEKO5KMthPWbNAoPhMGaKuZpuYaQX2hu0dskMvClOow85/aXqm7kTOg2FijO+07zjBVzXnoXNsZGhH+3LIir/htYP5ytcixyXj+Fww9koiWZ86TnLpCZaM0FD7HkfpdzRr6vPmf2POK8JW87U7mGommqqPAq334Fk1KNtxGbTOkJiInVbyAr6oNLF6+MCHNwy8IMhiu0Nj8BN5nYpy7VaroPuezlXrz8sF3fKbR0Gv6OVd7JLSsCjTl+tela04BrHSWyVRFm/vQHQupiZ0GOZYxfsDNxlOcmYD7RBpRic=
   matrix:
     - TARGET=cpu COMPUTE=-1
     - TARGET=gpu COMPUTE=61
