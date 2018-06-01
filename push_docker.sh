@@ -5,7 +5,7 @@ set -ueo pipefail
 
 function printUsage() {
     echo "Usage:  "
-    echo "  build_image.sh <target> [<nvidia_compute>]"
+    echo "  push_docker.sh <target> [<nvidia_compute>]"
     echo "  where <target> is one of:"
     echo "      gpu      Build for Nvidia GPU with CUDA"
     echo "      cpu      Build for CPU only"
@@ -42,20 +42,6 @@ if [ "${TARGET}" == "gpu" ]; then
 
     FULL_IMAGE_NAME="${IMAGE_NAME}:${BASE_TAG}-${TARGET}-${NVIDIA_COMPUTE}"
 
-    docker build \
-      --build-arg "NVIDIA_COMPUTE=compute_${NVIDIA_COMPUTE}" \
-      -f "${THIS_DIR}/Dockerfile.gpu-base" \
-      -t "gpu-base:ros-kinetic-cuda-9.0" \
-      "${THIS_DIR}"
-
-    echo "------------------------------------------------------"
-
-    docker build \
-      --build-arg "BASE_IMAGE=gpu-base" \
-      --build-arg "BASE_IMAGE_TAG=ros-kinetic-cuda-9.0" \
-      -f "${THIS_DIR}/Dockerfile" \
-      -t "${FULL_IMAGE_NAME}" \
-      "${THIS_DIR}"
 
 fi
 
@@ -63,12 +49,10 @@ if [ "${TARGET}" == "cpu" ]; then
 
     FULL_IMAGE_NAME="${IMAGE_NAME}:${BASE_TAG}-${TARGET}"
 
-    docker build \
-      --build-arg "BASE_IMAGE=ros" \
-      --build-arg "BASE_IMAGE_TAG=kinetic" \
-      -f "${THIS_DIR}/Dockerfile" \
-      -t "${FULL_IMAGE_NAME}" \
-      "${THIS_DIR}"
 fi
 
-echo "Create image: \"${FULL_IMAGE_NAME}\""
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin quay.io
+
+docker push "quay.io/edgecase/${FULL_IMAGE_NAME}"
+
+echo "Pushed image: \"${FULL_IMAGE_NAME}\""

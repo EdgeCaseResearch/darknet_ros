@@ -27,6 +27,14 @@ RUN git clone https://github.com/EdgeCaseResearch/tut_common_msgs.git /workspace
 RUN /bin/bash -c "source /opt/ros/kinetic/setup.bash && catkin_make install -DCMAKE_BUILD_TYPE=Release"
 RUN echo "source $(pwd)/install/setup.sh" >> ~/.bashrc
 
+# Basic cleanup
+RUN apt-get purge -y \
+    less \
+    vim \
+    wget \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /workspace
 
 # Run the ros interface by default
