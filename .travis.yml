@@ -11,7 +11,7 @@ services:
 
 env:
   global:
-    - secure: G1Ac0jLNR+7nJnIPBehqXEdykeKmEgX+2W/Bd2zj7xLvabHqe7I60OgFnTSExU99WifDX9EpfRxkVjtzDrqOkkesBOvu2fvUw3rXmIdfa6cS+dCKj9knSng0C7WFZX37LHjjbQ0enYpK3jnwU1+TAv6l2zJPOwhxQpbs5jXKw24EQHEp1ijWi4rrPxAn3Ay13/ShCqSJECaT7nO3pIaUbxm4gCnisFvaVo4lyWYLxMsc1wBcoh8jbBGSvEiV9kriHYCYoWANoqnV4mBCQTki54Lo9Jr4VjM9SdTjm32PFffCpZvnJu5D/GDDcP1JT8l+GLldRvv2LXvQnFHPl0gT2ttnQ4SwsJorPGKqrG7q3trZJyW/ZFW2dOmF6WboNlK8QlFEKO5KMthPWbNAoPhMGaKuZpuYaQX2hu0dskMvClOow85/aXqm7kTOg2FijO+07zjBVzXnoXNsZGhH+3LIir/htYP5ytcixyXj+Fww9koiWZ86TnLpCZaM0FD7HkfpdzRr6vPmf2POK8JW87U7mGommqqPAq334Fk1KNtxGbTOkJiInVbyAr6oNLF6+MCHNwy8IMhiu0Nj8BN5nYpy7VaroPuezlXrz8sF3fKbR0Gv6OVd7JLSsCjTl+tela04BrHSWyVRFm/vQHQupiZ0GOZYxfsDNxlOcmYD7RBpRic=
+    secure: ly6e+R0j2ZLwDSwGUqT1XQ3FYYekib7EJhEg9wZ/GgjDVkdRMdhGBesN6+jq45LI3e6Y3nivXrlaCmSIKZxybdOEUomrVSUKgMELoLktb9AWRXRuXEgD3eeV3zkNrBfYbVQyRW+j0qB2iRu3fKVMlOb9c0b2tra22Wd0spgJAB1HMmltT3DH7yRrMYfqGsyz2NgDUjmli53X4HiZTUCCLqFTFSHJlwhyh4xxqQ2U/2Z/aHLwovjnVwe4VSQ/LPnT67nXvVbC6CVOHvD5JNsywMt3jh80UsF8oJUy9Aip1vrDYpcpSQFCC4y1AML6O7yz9b2/H8ToOM6mlch2Caa5P+T6uq/NjIuinZARLSOdHy83BuF/7bnVBd+5qmlBhQDCCqpVzbwrDpxwEc7i8DDQUZ394uTxkMcspHl+VrVTQg3Tv9KR4YfOykyZjVBWwyyMKdXrTw/oAol34EpeAqoJAJelHTxKmQc7mT4Vx5seJbRl/ekqHNiJa+grb4HGwXoLsicTooD4g7turFnYlouh4ew0SHGOeibR1j8fgkcVsYFVq/RLxYfJmrykLq48m1oN7k99PgXxbbRJV+uw5lHDoar7yNAecsWXDqx6rBY/aoUuwtQ/hq55gy10Pwcw9bPzcmNV28PLGlY37e7pMZ+fvD5Q+4KfhKX4fgAONUjZXNI=
   matrix:
     - TARGET=cpu COMPUTE=-1
     - TARGET=gpu COMPUTE=61
@@ -25,7 +25,7 @@ before_install:
   - sudo pip -q install awscli
 
 script:
-  # Stop if downloading SB fails
+
   - set -e
   - bash build_image.sh ${TARGET} ${COMPUTE}
 
