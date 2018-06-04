@@ -30,8 +30,6 @@ BASE_TAG="darknet-ros"
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-
-
 if [ "${TARGET}" == "gpu" ]; then
 
   if [ -z "$NVIDIA_COMPUTE" ]; then

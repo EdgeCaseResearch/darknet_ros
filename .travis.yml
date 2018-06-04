@@ -23,8 +23,8 @@ before_install:
   - sudo pip -q install awscli
 
 script:
-
   - set -e
+  - bash get_weights.sh
   - bash build_image.sh ${TARGET} ${COMPUTE}
 
 deploy:
